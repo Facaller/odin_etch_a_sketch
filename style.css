@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    justify-content: center;
+    margin: 0px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 510px;
+    height: 510px;
+}
+/* Use flex grow */
+.column {
+    height: 30px;
+    width: 30px;
+    margin: 0px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 0px;
+}
+
+.row {
+    height: 30px;
+    width: 30px;
+    margin: 0px;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    padding: 0px;
+}

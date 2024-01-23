@@ -1,16 +1,17 @@
 const container = document.createElement('div');
 document.body.appendChild(container);
+container.classList.add("container")
 
 function makeRows (rowNum, columnNum) {
     for (r = 0; r < rowNum; r++) {
         for (c = 1; c < columnNum; c++) {
             let column = document.createElement('div')
             container.appendChild(column);
-            column.textContent = 'test2'
+            column.classList.add("column")
         }
         let row = document.createElement('div');
         container.appendChild(row);
-        row.textContent = 'test';
+        row.classList.add("row")
     }
 }
 
