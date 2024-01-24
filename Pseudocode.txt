@@ -5,7 +5,7 @@ Use flex to line them up in grid format and give them a border
     Give container a clear border 
     Use flex to adjust size for divs to fit container
 
-
 Create a hover effect for each grid block using event listeners
-Use JS to create hover effect and change the colour
---Re-evaluate at this point --
+    Activate with click then begin background colour div change
+    Try mouseover without mouseout
+    Add new class to accomodate black and rainbow
