@@ -30,4 +30,4 @@ function makeGrid (rowNum, columnNum) {
     }
 }
 
-makeGrid(16, 16)
+makeGrid(10, 10)
