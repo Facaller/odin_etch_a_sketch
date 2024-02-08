@@ -7,9 +7,9 @@ container.appendChild(grid);
 grid.classList.add("grid");
 
 function makeGrid (rowNum, columnNum) {
-    for (r = 0; r < rowNum; r++) {
+    for (let r = 0; r < rowNum; r++) {
 
-        for (c = 1; c < columnNum; c++) {
+        for (let c = 1; c < columnNum; c++) {
             let column = document.createElement('div')
             grid.appendChild(column);
             column.classList.add("column")
@@ -37,4 +37,4 @@ function makeGrid (rowNum, columnNum) {
     }
 }
 
-makeGrid(9, 9)
+makeGrid(16, 16)
