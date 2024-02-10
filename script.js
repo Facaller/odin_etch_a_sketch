@@ -2,16 +2,12 @@ const container = document.createElement('div');
 document.body.appendChild(container);
 container.classList.add("container");
 
-const grid = document.createElement('div');
-container.appendChild(grid);
-grid.classList.add("grid");
-
 function makeGrid (rowNum, columnNum) {
     for (let r = 0; r < rowNum; r++) {
 
         for (let c = 1; c < columnNum; c++) {
             let column = document.createElement('div')
-            grid.appendChild(column);
+            container.appendChild(column);
             column.classList.add("column")
             
 
@@ -24,7 +20,7 @@ function makeGrid (rowNum, columnNum) {
         }
 
         let row = document.createElement('div');
-        grid.appendChild(row);
+        container.appendChild(row);
         row.classList.add("row")
         
 

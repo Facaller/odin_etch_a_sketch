@@ -1,8 +1,4 @@
 body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -10,14 +6,9 @@ body {
 /* Use flex grow to make these accomodate any number of squares*/
 .container {
     display: flex;
+    flex-wrap: wrap;
     width: 600px;
     height: 600px;
-}
-
-.grid {
-    display: flex;
-    flex-wrap: wrap;
-    flex-grow: 1;
 }
 
 .column,
