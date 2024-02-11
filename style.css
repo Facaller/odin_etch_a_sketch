@@ -7,15 +7,14 @@ body {
 .container {
     display: flex;
     flex-wrap: wrap;
-    width: 600px;
-    height: 600px;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
 }
 
 .column,
 .row {
-    flex-grow: 1;
-    width: 5%;
-    aspect-ratio: 1;
+
     border: 1px solid black;
 }
 

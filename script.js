@@ -1,34 +1,58 @@
+const gridSize = 600
+let rows = 16
+let columns = 16
+
 const container = document.createElement('div');
 document.body.appendChild(container);
 container.classList.add("container");
+container.style.width = `${gridSize}px`;
+container.style.height = `${gridSize}px`;
 
-function makeGrid (rowNum, columnNum) {
-    for (let r = 0; r < rowNum; r++) {
+const settings = document.createElement('div');
+document.body.appendChild(settings);
 
-        for (let c = 1; c < columnNum; c++) {
-            let column = document.createElement('div')
-            container.appendChild(column);
-            column.classList.add("column")
+
+const changeSize = document.createElement('button');
+settings.appendChild(changeSize);
+changeSize.textContent = 'Change Size'
+
+changeSize.addEventListener('mousedown', () => {
+    let gridNum = prompt('Number of grid cells?')
+    
+    if gridNum
+})
+
+function makeGrid (rows, columns) {
+    for (let r = 0; r < rows; r++) {
+
+        for (let c = 1; c < columns; c++) {
+            let gridColumn = document.createElement('div')
+            gridColumn.style.width = `${(gridSize / rows) - 2}px`;
+            gridColumn.style.height = `${(gridSize / columns) - 2}px`;
+            container.appendChild(gridColumn);
+            gridColumn.classList.add("column")
             
 
-            column.addEventListener('mouseover', () => {
-                column.style.backgroundColor = 'black';
+            gridColumn.addEventListener('mouseover', () => {
+                gridColumn.style.backgroundColor = 'black';
             });
-            column.addEventListener('mouseout', () => {
-                column.style.backgroundColor = '';
+            gridColumn.addEventListener('mouseout', () => {
+                gridColumn.style.backgroundColor = '';
             });
         }
 
-        let row = document.createElement('div');
-        container.appendChild(row);
-        row.classList.add("row")
+        let gridRow = document.createElement('div');
+        gridRow.style.width = `${(gridSize / rows) - 2}px`;
+        gridRow.style.height = `${(gridSize / columns) - 2}px`;
+        container.appendChild(gridRow);
+        gridRow.classList.add("row")
         
 
-        row.addEventListener('mouseover', () => {
-            row.style.backgroundColor = 'black';
+        gridRow.addEventListener('mouseover', () => {
+            gridRow.style.backgroundColor = 'black';
         });
-        row.addEventListener('mouseout', () => {
-            row.style.backgroundColor = '';
+        gridRow.addEventListener('mouseout', () => {
+            gridRow.style.backgroundColor = '';
         });
     }
 }

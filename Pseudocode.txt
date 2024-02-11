@@ -6,3 +6,8 @@ Create for loop with row times column values (try nested loop for experimentatio
 Let loop create div for cells (try 2 seperate divs [rows; columns] and single div [cells])
 Set div(s) dimensions to equal container divided by rows/columns (in px)
 Add classes where necessary and append children as needed.
+
+Create button element in JS
+Add event listener to button for mouse click
+After click, prompt user for number less than 100
+Old grid is replaced by new grid with new number of cells
