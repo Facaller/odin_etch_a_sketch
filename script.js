@@ -1,6 +1,6 @@
-const gridSize = 600
-let rows = 16
-let columns = 16
+const gridSize = 600;
+let rows = 16;
+let columns = 16;
 
 const container = document.createElement('div');
 document.body.appendChild(container);
@@ -14,13 +14,18 @@ document.body.appendChild(settings);
 
 const changeSize = document.createElement('button');
 settings.appendChild(changeSize);
-changeSize.textContent = 'Change Size'
+changeSize.textContent = 'Change Size';
 
 changeSize.addEventListener('mousedown', () => {
-    let gridNum = prompt('Number of grid cells?')
+    let gridNum = parseInt(prompt('Number of grid columns and rows?'));
     
-    if gridNum
-})
+    if ((gridNum >= 1) || (gridNum <= 100)) {
+        makeGrid(gridNum, gridNum)
+        container.replaceChild()
+    } else { ((gridNum > 100 ) || (gridNum < 1)) 
+        alert('Please enter a number between 1 and 100.')
+    }
+});
 
 function makeGrid (rows, columns) {
     for (let r = 0; r < rows; r++) {
