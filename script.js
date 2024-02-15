@@ -8,9 +8,11 @@ container.classList.add("container");
 container.style.width = `${gridSize}px`;
 container.style.height = `${gridSize}px`;
 
+let newContainer = container;
+newContainer.setAttribute("id","newCon");
+
 const settings = document.createElement('div');
 document.body.appendChild(settings);
-
 
 const changeSize = document.createElement('button');
 settings.appendChild(changeSize);
@@ -18,10 +20,13 @@ changeSize.textContent = 'Change Size';
 
 changeSize.addEventListener('mousedown', () => {
     let gridNum = parseInt(prompt('Number of grid columns and rows?'));
-    
+        
     if ((gridNum >= 1) || (gridNum <= 100)) {
+        let newCon = document.querySelector("#newCon")
+        let clone = newCon.cloneNode(true);
+        
+        container.replaceWith(clone);
         makeGrid(gridNum, gridNum)
-        container.replaceChild()
     } else { ((gridNum > 100 ) || (gridNum < 1)) 
         alert('Please enter a number between 1 and 100.')
     }
