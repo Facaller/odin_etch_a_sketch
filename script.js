@@ -21,7 +21,6 @@ changeSize.addEventListener('mousedown', () => {
     if ((gridNum >= 1) || (gridNum <= 100)) {
         // spend some time understanding this section 
         replaceContainer()
-
         makeGrid(gridNum, gridNum)
     } else { ((gridNum > 100 ) || (gridNum < 1)) 
         alert('Please enter a number between 1 and 100.')
@@ -30,6 +29,7 @@ changeSize.addEventListener('mousedown', () => {
 
 function makeGrid (rows, columns) {
     for (let r = 0; r < rows; r++) {
+        let drag = false
 
         for (let c = 1; c < columns; c++) {
             let gridColumn = document.createElement('div')
@@ -38,12 +38,17 @@ function makeGrid (rows, columns) {
             container.appendChild(gridColumn);
             gridColumn.classList.add("column")
             
-
-            gridColumn.addEventListener('mouseover', () => {
-                gridColumn.style.backgroundColor = 'black';
+// look at using a while loop here for the mousedown event 
+            gridColumn.addEventListener('mousedown', () => {
+                drag = false;
+                gridColumn.classList.add('blackPen');
             });
-            gridColumn.addEventListener('mouseout', () => {
-                gridColumn.style.backgroundColor = '';
+            gridColumn.addEventListener('mousemove', () => {
+                drag = true;
+            });
+            gridColumn.addEventListener('mouseup', () => {
+                drag = false;
+                gridColumn.classList.remove('blackPen');
             });
         }
 
