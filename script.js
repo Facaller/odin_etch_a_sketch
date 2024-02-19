@@ -38,17 +38,22 @@ function makeGrid (rows, columns) {
             container.appendChild(gridColumn);
             gridColumn.classList.add("column")
             
-// look at using a while loop here for the mousedown event 
-            gridColumn.addEventListener('mousedown', () => {
-                drag = false;
+            //clean this shit up
+            while (drag) {
                 gridColumn.classList.add('blackPen');
-            });
-            gridColumn.addEventListener('mousemove', () => {
+            }
+            gridColumn.addEventListener('mousedown', () => {
+                gridColumn.classList.add('blackPen');
                 drag = true;
+                
             });
             gridColumn.addEventListener('mouseup', () => {
                 drag = false;
-                gridColumn.classList.remove('blackPen');
+            });
+            gridColumn.addEventListener('mousemove', () => {
+                if (drag) {
+                    gridColumn.classList.add('blackPen');
+                }
             });
         }
 
