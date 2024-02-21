@@ -27,48 +27,44 @@ changeSize.addEventListener('mousedown', () => {
     }
 });
 
-function makeGrid (rows, columns) {
-    for (let r = 0; r < rows; r++) {
+function makeGrid (cellNum) {
+    for (let r = 0; r < cellNum; r++) {
         let drag = false
 
-        for (let c = 1; c < columns; c++) {
-            let gridColumn = document.createElement('div')
-            gridColumn.style.width = `${(gridSize / rows) - 2}px`;
-            gridColumn.style.height = `${(gridSize / columns) - 2}px`;
-            container.appendChild(gridColumn);
-            gridColumn.classList.add("column")
+        for (let c = 1; c < cellNum; c++) {
+            let cells = document.createElement('div')
+            cells.style.width = `${(gridSize / cellNum) - 2}px`;
+            cells.style.height = `${(gridSize / cellNum) - 2}px`;
+            container.appendChild(cells);
+            cells.classList.add("cells")
             
-            //clean this shit up
-            while (drag) {
-                gridColumn.classList.add('blackPen');
-            }
-            gridColumn.addEventListener('mousedown', () => {
-                gridColumn.classList.add('blackPen');
+            //try foreach
+        
+            cells.addEventListener('mousedown', () => {
+                cells.classList.add('blackPen');
                 drag = true;
                 
             });
-            gridColumn.addEventListener('mouseup', () => {
-                drag = false;
-            });
-            gridColumn.addEventListener('mousemove', () => {
+            cells.addEventListener('mousemove', () => {
                 if (drag) {
-                    gridColumn.classList.add('blackPen');
+                    cells.classList.add('blackPen');
                 }
             });
+            
         }
 
-        let gridRow = document.createElement('div');
-        gridRow.style.width = `${(gridSize / rows) - 2}px`;
-        gridRow.style.height = `${(gridSize / columns) - 2}px`;
-        container.appendChild(gridRow);
-        gridRow.classList.add("row")
+        let cells = document.createElement('div');
+        cells.style.width = `${(gridSize / cellNum) - 2}px`;
+        cells.style.height = `${(gridSize / cellNum) - 2}px`;
+        container.appendChild(cells);
+        cells.classList.add("cells")
         
 
-        gridRow.addEventListener('mouseover', () => {
-            gridRow.style.backgroundColor = 'black';
+        cells.addEventListener('mouseover', () => {
+            cells.style.backgroundColor = 'black';
         });
-        gridRow.addEventListener('mouseout', () => {
-            gridRow.style.backgroundColor = '';
+        cells.addEventListener('mouseout', () => {
+            cells.style.backgroundColor = '';
         });
     }
 }

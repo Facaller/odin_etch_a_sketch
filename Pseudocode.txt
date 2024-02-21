@@ -11,3 +11,9 @@ Create button element in JS
 Add event listener to button for mouse click
 After click, prompt user for number less than 100
 Old grid is replaced by new grid with new number of cells
+
+Paint effect
+Add event listener for down click with style change for colour
+let style remain active while down click is active (look into drag)
+Add event listener for mouse up event and stop adding style with mouseup event
+Once completed create a button that does the same with full colour spectrum

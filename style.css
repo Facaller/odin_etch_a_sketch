@@ -12,9 +12,7 @@ body {
     margin: auto;
 }
 
-.column,
-.row {
-
+.cells {
     border: 1px solid black;
 }
 
