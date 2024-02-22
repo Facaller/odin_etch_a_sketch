@@ -29,7 +29,6 @@ changeSize.addEventListener('mousedown', () => {
 
 function makeGrid (cellNum) {
     for (let r = 0; r < cellNum; r++) {
-        let drag = false
 
         for (let c = 1; c < cellNum; c++) {
             let cells = document.createElement('div')
@@ -37,20 +36,24 @@ function makeGrid (cellNum) {
             cells.style.height = `${(gridSize / cellNum) - 2}px`;
             container.appendChild(cells);
             cells.classList.add("cells")
-            
-            //try foreach
         
+            isDrawing = false;
+
             cells.addEventListener('mousedown', () => {
                 cells.classList.add('blackPen');
-                drag = true;
-                
+                isDrawing = true;
             });
             cells.addEventListener('mousemove', () => {
-                if (drag) {
+                if (isDrawing) {
                     cells.classList.add('blackPen');
                 }
             });
-            
+            cells.addEventListener('mouseup', () => {
+                if (isDrawing) {
+                    cells.classList.add('blackPen');
+                }
+                isDrawing = false;
+            });
         }
 
         let cells = document.createElement('div');
