@@ -1,7 +1,9 @@
 const gridSize = 600;
 let rows = 16;
 let columns = 16;
+isDrawing = false;
 
+//elements
 const container = document.createElement('div');
 document.body.appendChild(container);
 container.classList.add("container");
@@ -15,11 +17,26 @@ const changeSize = document.createElement('button');
 settings.appendChild(changeSize);
 changeSize.textContent = 'Change Size';
 
+const blackColour = document.createElement('button');
+settings.appendChild(blackColour);
+blackColour.textContent = 'Black';
+
+const rainbowColour = document.createElement('button');
+settings.appendChild(rainbowColour);
+rainbowColour.textContent = 'Rainbow';
+
+rainbowColour.addEventListener('mousedown', () => {
+    makeRainbow ();
+})
+
+blackColour.addEventListener('mousedown', () => {
+    makeBlack();
+})
+
 changeSize.addEventListener('mousedown', () => {
     let gridNum = parseInt(prompt('Number of grid columns and rows?'));
         
     if ((gridNum >= 1) || (gridNum <= 100)) {
-        // spend some time understanding this section 
         replaceContainer()
         makeGrid(gridNum, gridNum)
     } else { ((gridNum > 100 ) || (gridNum < 1)) 
@@ -36,21 +53,20 @@ function makeGrid (cellNum) {
             cells.style.height = `${(gridSize / cellNum) - 2}px`;
             container.appendChild(cells);
             cells.classList.add("cells")
-        
-            isDrawing = false;
-
+// find out about declaration const, let, blank at different locations (boolean)
+            //create if statement for rainbow and black button
             cells.addEventListener('mousedown', () => {
-                cells.classList.add('blackPen');
+                cells.style.background = (`${makeRainbow()}`);
                 isDrawing = true;
             });
             cells.addEventListener('mousemove', () => {
                 if (isDrawing) {
-                    cells.classList.add('blackPen');
+                    cells.style.background = (`${makeRainbow()}`);
                 }
             });
             cells.addEventListener('mouseup', () => {
                 if (isDrawing) {
-                    cells.classList.add('blackPen');
+                    cells.style.background = (`${makeRainbow()}`);
                 }
                 isDrawing = false;
             });
@@ -60,14 +76,22 @@ function makeGrid (cellNum) {
         cells.style.width = `${(gridSize / cellNum) - 2}px`;
         cells.style.height = `${(gridSize / cellNum) - 2}px`;
         container.appendChild(cells);
-        cells.classList.add("cells")
+        cells.classList.add("cells");
         
-
-        cells.addEventListener('mouseover', () => {
-            cells.style.backgroundColor = 'black';
+        cells.addEventListener('mousedown', () => {
+            cells.classList.add('blackPen');
+            isDrawing = true;
         });
-        cells.addEventListener('mouseout', () => {
-            cells.style.backgroundColor = '';
+        cells.addEventListener('mousemove', () => {
+            if (isDrawing) {
+                cells.classList.add('blackPen');
+            }
+        });
+        cells.addEventListener('mouseup', () => {
+            if (isDrawing) {
+                cells.classList.add('blackPen');
+            }
+            isDrawing = false;
         });
     }
 }
@@ -77,5 +101,15 @@ function replaceContainer () {
         container.removeChild(container.firstChild)
     }
 };
+
+function makeRainbow () {
+    const hexColour = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    return hexColour;
+}
+
+function makeBlack () {
+    const black = cells.classList.add('blackPen');
+    return black;
+}
 
 makeGrid(16, 16)
