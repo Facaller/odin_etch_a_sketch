@@ -18,12 +18,11 @@ let style remain active while down click is active (look into drag)
 Add event listener for mouse up event and stop adding style with mouseup event
 Once completed create a button that does the same with full colour spectrum
 
-Rainbow button
-Create a button
-Once clicked, button should change the pen colour
-    Create event listener that listens for rainbow button.
+Rainbow button & black button
+Create a buttons
+Once clicked, button should change the pen colour (cell colour)
+    Create falsy variables for black and rainbow buttons
+    Create event listener that listens for buttons click.
+    After click, respective falsy variables = true
     Create function that returns random hex value 
-    If rainbow button has been clicked, use return value in pen
-    //
-    Change grid squares to return random hex value on mousedown/mouseover event
-    See what works.
+    If  button has been clicked, use return value in pen to change cells

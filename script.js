@@ -2,6 +2,9 @@ const gridSize = 600;
 let rows = 16;
 let columns = 16;
 isDrawing = false;
+drawBlack = true;
+drawRainbow = false;
+
 
 //elements
 const container = document.createElement('div');
@@ -27,10 +30,16 @@ rainbowColour.textContent = 'Rainbow';
 
 rainbowColour.addEventListener('mousedown', () => {
     makeRainbow ();
+    drawRainbow = true;
+    drawBlack = false;
+    console.log(`black ${drawBlack}`,`rainbow ${drawRainbow}`)
 })
 
 blackColour.addEventListener('mousedown', () => {
     makeBlack();
+    drawBlack = true;
+    drawRainbow = false;
+    console.log(`black ${drawBlack}`,`rainbow ${drawRainbow}`)
 })
 
 changeSize.addEventListener('mousedown', () => {
@@ -56,17 +65,17 @@ function makeGrid (cellNum) {
 // find out about declaration const, let, blank at different locations (boolean)
             //create if statement for rainbow and black button
             cells.addEventListener('mousedown', () => {
-                cells.style.background = (`${makeRainbow()}`);
+                cells.style.background = (`${makeBlack()}`);
                 isDrawing = true;
             });
             cells.addEventListener('mousemove', () => {
                 if (isDrawing) {
-                    cells.style.background = (`${makeRainbow()}`);
+                    cells.style.background = (`${makeBlack()}`);
                 }
             });
             cells.addEventListener('mouseup', () => {
                 if (isDrawing) {
-                    cells.style.background = (`${makeRainbow()}`);
+                    cells.style.background = (`${makeBlack()}`);
                 }
                 isDrawing = false;
             });
@@ -108,7 +117,7 @@ function makeRainbow () {
 }
 
 function makeBlack () {
-    const black = cells.classList.add('blackPen');
+    const black = '#000000'
     return black;
 }
 
