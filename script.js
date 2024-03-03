@@ -2,7 +2,7 @@ const gridSize = 600;
 let rows = 16;
 let columns = 16;
 isDrawing = false;
-drawBlack = true;
+drawBlack = false;
 drawRainbow = false;
 
 
@@ -63,9 +63,13 @@ function makeGrid (cellNum) {
             container.appendChild(cells);
             cells.classList.add("cells")
 // find out about declaration const, let, blank at different locations (boolean)
-            //create if statement for rainbow and black button
+            //figure out mousemove for each colour
             cells.addEventListener('mousedown', () => {
-                cells.style.background = (`${makeBlack()}`);
+                if (drawBlack) {
+                    cells.style.background = (`${makeBlack()}`);    
+                } else {
+                    cells.style.background = (`${makeRainbow()}`);
+                }
                 isDrawing = true;
             });
             cells.addEventListener('mousemove', () => {
@@ -74,8 +78,10 @@ function makeGrid (cellNum) {
                 }
             });
             cells.addEventListener('mouseup', () => {
-                if (isDrawing) {
-                    cells.style.background = (`${makeBlack()}`);
+                if (drawBlack) {
+                    cells.style.background = (`${makeBlack()}`);    
+                } else {
+                    cells.style.background = (`${makeRainbow()}`);
                 }
                 isDrawing = false;
             });
@@ -122,3 +128,28 @@ function makeBlack () {
 }
 
 makeGrid(16, 16)
+
+// cells.addEventListener('mousedown', () => {
+//     if (drawBlack) {
+//         cells.style.background = (`${makeBlack()}`);    
+//     } else {
+//         cells.style.background = (`${makeRainbow()}`);
+//     }
+//     isDrawing = true;
+// });
+// cells.addEventListener('mousemove', () => {
+//     if (isDrawing) {
+//         cells.style.background = (`${makeBlack()}`);
+//     }
+// });
+// cells.addEventListener('mouseup', () => {
+//     if (isDrawing) {
+//         cells.style.background = (`${makeBlack()}`);
+//     }
+//     if (drawBlack) {
+//         cells.style.background = (`${makeBlack()}`);    
+//     } else {
+//         cells.style.background = (`${makeRainbow()}`);
+//     }
+//     isDrawing = false;
+// });
