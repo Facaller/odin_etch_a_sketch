@@ -28,6 +28,10 @@ const rainbowColour = document.createElement('button');
 settings.appendChild(rainbowColour);
 rainbowColour.textContent = 'Rainbow';
 
+const clearButton = document.createElement('button');
+settings.appendChild(clearButton);
+clearButton.textContent = 'Clear';
+
 rainbowColour.addEventListener('mousedown', () => {
     drawRainbow = true;
     drawBlack = false;
@@ -37,6 +41,8 @@ blackColour.addEventListener('mousedown', () => {
     drawBlack = true;
     drawRainbow = false;
 })
+
+
 
 changeSize.addEventListener('mousedown', () => {
     let gridNum = parseInt(prompt('Number of grid columns and rows?'));
@@ -54,10 +60,16 @@ function makeGrid (cellNum) {
 
         for (let c = 1; c < cellNum; c++) {
             let cells = document.createElement('div')
+            cells.setAttribute('id','cellsRef')
             cells.style.width = `${(gridSize / cellNum) - 2}px`;
             cells.style.height = `${(gridSize / cellNum) - 2}px`;
             container.appendChild(cells);
             cells.classList.add("cells")
+            
+            clearButton.addEventListener('click', () => {
+                cells.style.background = ''
+                container.style.background = ''
+            });
 // find out about declaration const, let, blank at different locations (boolean)
             
             cells.addEventListener('mousedown', () => {
@@ -90,6 +102,7 @@ function makeGrid (cellNum) {
                     }
                 }
                 isDrawing = false;
+                
             });
         }
 
@@ -100,20 +113,36 @@ function makeGrid (cellNum) {
         cells.classList.add("cells");
         
         cells.addEventListener('mousedown', () => {
-            cells.classList.add('blackPen');
-            isDrawing = true;
-        });
-        cells.addEventListener('mousemove', () => {
-            if (isDrawing) {
-                cells.classList.add('blackPen');
-            }
-        });
-        cells.addEventListener('mouseup', () => {
-            if (isDrawing) {
-                cells.classList.add('blackPen');
-            }
-            isDrawing = false;
-        });
+                
+                if (isDrawing) {
+                    if (drawBlack) {
+                        cells.style.background = makeBlack();    
+                    } else if (drawRainbow) {
+                        cells.style.background = makeRainbow();
+                    }
+                }
+                isDrawing = true;
+            });
+            cells.addEventListener('mousemove', () => {
+                if (isDrawing) {
+                    if (drawBlack) {
+                        cells.style.background = makeBlack();    
+                    } else if (drawRainbow) {
+                        cells.style.background = makeRainbow();
+                    } 
+                }
+            });
+            cells.addEventListener('mouseup', () => {
+                
+                if (isDrawing) {
+                    if (drawBlack) {
+                        cells.style.background = makeBlack();    
+                    } else if (drawRainbow) {
+                        cells.style.background = makeRainbow();
+                    }
+                }
+                isDrawing = false;
+            });
     }
 }
 
@@ -133,29 +162,4 @@ function makeBlack () {
     return black;
 }
 
-makeGrid(16, 16)
-
-// cells.addEventListener('mousedown', () => {
-//     if (drawBlack) {
-//         cells.style.background = (`${makeBlack()}`);    
-//     } else {
-//         cells.style.background = (`${makeRainbow()}`);
-//     }
-//     isDrawing = true;
-// });
-// cells.addEventListener('mousemove', () => {
-//     if (isDrawing) {
-//         cells.style.background = (`${makeBlack()}`);
-//     }
-// });
-// cells.addEventListener('mouseup', () => {
-//     if (isDrawing) {
-//         cells.style.background = (`${makeBlack()}`);
-//     }
-//     if (drawBlack) {
-//         cells.style.background = (`${makeBlack()}`);    
-//     } else {
-//         cells.style.background = (`${makeRainbow()}`);
-//     }
-//     isDrawing = false;
-// });
+makeGrid(16)
