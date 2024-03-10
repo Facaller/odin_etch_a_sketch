@@ -4,6 +4,7 @@ let columns = 16;
 isDrawing = false;
 let drawBlack = true;
 let drawRainbow = false;
+let drawOpaque = false;
 
 
 //elements
@@ -32,17 +33,24 @@ const clearButton = document.createElement('button');
 settings.appendChild(clearButton);
 clearButton.textContent = 'Clear';
 
-rainbowColour.addEventListener('mousedown', () => {
+const opacity = document.createElement('button');
+settings.appendChild(opacity);
+opacity.textContent = 'Opacity';
+
+rainbowColour.addEventListener('click', () => {
     drawRainbow = true;
     drawBlack = false;
-})
+});
 
-blackColour.addEventListener('mousedown', () => {
+blackColour.addEventListener('click', () => {
     drawBlack = true;
     drawRainbow = false;
-})
+});
 
-
+opacity.addEventListener('click', () => {
+    drawOpaque = true;
+    console.log('this works');
+});
 
 changeSize.addEventListener('mousedown', () => {
     let gridNum = parseInt(prompt('Number of grid columns and rows?'));
@@ -57,7 +65,11 @@ changeSize.addEventListener('mousedown', () => {
 
 function makeGrid (cellNum) {
     for (let r = 0; r < cellNum; r++) {
-
+        
+        clearButton.addEventListener('click', () => {
+            cells.style.background = ''
+        });
+        
         for (let c = 1; c < cellNum; c++) {
             let cells = document.createElement('div')
             cells.setAttribute('id','cellsRef')
@@ -68,14 +80,26 @@ function makeGrid (cellNum) {
             
             clearButton.addEventListener('click', () => {
                 cells.style.background = ''
-                container.style.background = ''
-            });
+            }); 
+
+            let opaqueCells = parseFloat(cells.style.opacity) - 0.1
+            
 // find out about declaration const, let, blank at different locations (boolean)
             
             cells.addEventListener('mousedown', () => {
-                
                 if (isDrawing) {
-                    if (drawBlack) {
+                    if (drawOpaque) {
+                        if (drawBlack) {
+                            cells.style.background = makeBlack()
+                            opaqueCells -= opaqueCells
+                            
+                        } else if (drawRainbow) {
+                            cells.style.background = makeRainbow()
+                            opaqueCells -= opaqueCells
+                            
+                        }    
+                    }
+                    else if (drawBlack) {
                         cells.style.background = makeBlack();    
                     } else if (drawRainbow) {
                         cells.style.background = makeRainbow();
@@ -85,6 +109,17 @@ function makeGrid (cellNum) {
             });
             cells.addEventListener('mousemove', () => {
                 if (isDrawing) {
+                    if (drawOpaque) {
+                        if (drawBlack) {
+                            cells.style.background = makeBlack()
+                            opaqueCells -= opaqueCells
+                            
+                        } else if (drawRainbow) {
+                            cells.style.background = makeRainbow()
+                            opaqueCells -= opaqueCells
+                            
+                        }    
+                    }
                     if (drawBlack) {
                         cells.style.background = makeBlack();    
                     } else if (drawRainbow) {
@@ -93,8 +128,18 @@ function makeGrid (cellNum) {
                 }
             });
             cells.addEventListener('mouseup', () => {
-                
                 if (isDrawing) {
+                    if (drawOpaque) {
+                        if (drawBlack) {
+                            cells.style.background = makeBlack()
+                            opaqueCells -= opaqueCells
+                            
+                        } else if (drawRainbow) {
+                            cells.style.background = makeRainbow()
+                            opaqueCells -= opaqueCells
+                            
+                        }    
+                    }
                     if (drawBlack) {
                         cells.style.background = makeBlack();    
                     } else if (drawRainbow) {
@@ -102,7 +147,6 @@ function makeGrid (cellNum) {
                     }
                 }
                 isDrawing = false;
-                
             });
         }
 
@@ -113,7 +157,6 @@ function makeGrid (cellNum) {
         cells.classList.add("cells");
         
         cells.addEventListener('mousedown', () => {
-                
                 if (isDrawing) {
                     if (drawBlack) {
                         cells.style.background = makeBlack();    
@@ -133,7 +176,6 @@ function makeGrid (cellNum) {
                 }
             });
             cells.addEventListener('mouseup', () => {
-                
                 if (isDrawing) {
                     if (drawBlack) {
                         cells.style.background = makeBlack();    
