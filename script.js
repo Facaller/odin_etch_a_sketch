@@ -52,13 +52,13 @@ opacity.addEventListener('click', () => {
     console.log('this works');
 });
 
-changeSize.addEventListener('mousedown', () => {
+changeSize.addEventListener('click', () => {
     let gridNum = parseInt(prompt('Number of grid columns and rows?'));
         
-    if ((gridNum >= 1) || (gridNum <= 100)) {
+    if ((gridNum >= 1) && (gridNum <= 100)) {
         replaceContainer()
-        makeGrid(gridNum, gridNum)
-    } else { ((gridNum > 100 ) || (gridNum < 1)) 
+        makeGrid(gridNum)
+    } else {
         alert('Please enter a number between 1 and 100.')
     }
 });
@@ -84,18 +84,23 @@ function makeGrid (cellNum) {
 
             let opaqueCells = parseFloat(cells.style.opacity) - 0.1
             
-// find out about declaration const, let, blank at different locations (boolean)
+            // idea here was get variable for makeBlack() - cells.opacity
+            // then += every time mouseover to darken with each event.
             
+// find out about declaration const, let, & blank at different locations (boolean)
+            cells.addEventListener('dragstart', (e) => {
+                e.preventDefault();
+            });
             cells.addEventListener('mousedown', () => {
                 if (isDrawing) {
                     if (drawOpaque) {
                         if (drawBlack) {
                             cells.style.background = makeBlack()
-                            opaqueCells -= opaqueCells
+                            opaqueCells += opaqueCells
                             
                         } else if (drawRainbow) {
                             cells.style.background = makeRainbow()
-                            opaqueCells -= opaqueCells
+                            opaqueCells += opaqueCells
                             
                         }    
                     }
@@ -112,11 +117,11 @@ function makeGrid (cellNum) {
                     if (drawOpaque) {
                         if (drawBlack) {
                             cells.style.background = makeBlack()
-                            opaqueCells -= opaqueCells
+                            opaqueCells += opaqueCells
                             
                         } else if (drawRainbow) {
                             cells.style.background = makeRainbow()
-                            opaqueCells -= opaqueCells
+                            opaqueCells += opaqueCells
                             
                         }    
                     }
@@ -132,11 +137,11 @@ function makeGrid (cellNum) {
                     if (drawOpaque) {
                         if (drawBlack) {
                             cells.style.background = makeBlack()
-                            opaqueCells -= opaqueCells
+                            opaqueCells += opaqueCells
                             
                         } else if (drawRainbow) {
                             cells.style.background = makeRainbow()
-                            opaqueCells -= opaqueCells
+                            opaqueCells += opaqueCells
                             
                         }    
                     }
@@ -156,6 +161,10 @@ function makeGrid (cellNum) {
         container.appendChild(cells);
         cells.classList.add("cells");
         
+        cells.addEventListener('dragstart', (e) => {
+            e.preventDefault();
+        });
+
         cells.addEventListener('mousedown', () => {
                 if (isDrawing) {
                     if (drawBlack) {
@@ -205,3 +214,26 @@ function makeBlack () {
 }
 
 makeGrid(16)
+
+// shading function from a completed project
+
+// function RGBToHex(rgb) {
+//     // Choose correct separator
+//     let sep = rgb.indexOf(',') > -1 ? ',' : ' ';
+//     // Turn "rgb(r,g,b)" into [r,g,b]
+//     rgb = rgb.substr(4).split(')')[0].split(sep);
+  
+//     let r = (+rgb[0]).toString(16),
+//       g = (+rgb[1]).toString(16),
+//       b = (+rgb[2]).toString(16);
+  
+//     if (r.length == 1) r = '0' + r;
+//     if (g.length == 1) g = '0' + g;
+//     if (b.length == 1) b = '0' + b;
+//     b = (+rgb[2]).toString(16);
+  
+//     if (r.length == 1) r = '0' + r;
+//     if (g.length == 1) g = '0' + g;
+//     if (b.length == 1) b = '0' + b;
+//     return '#' + r + g + b;
+//   }
